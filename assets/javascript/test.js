@@ -1,9 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-    var timer = 20;
+    var qTimer = 20;
+    var intervalId;
     var correct = 0;
     var wrong = 0;
     var sequence = 0;
+    // var arr = [];
 
     var trivia = [{
         question: "What was the official name for Android 6.0?",
@@ -72,6 +74,12 @@ $(document).ready(function() {
             $("#question").text(trivia[sequence].question);
             console.log("sequence: " + sequence);
 
+            var timerSpaceDiv = $("<div>").addClass("clearable").html("<br/>");
+            $("#question").append(timerSpaceDiv)
+
+            var timerSpan = $("<span>").attr("id", "count-down").addClass("clearable").text("Seconds left: " + qTimer);
+            $(timerSpaceDiv).append(timerSpan)
+
             for (i = 0; i < 4; i++) {
                 var choice = $("<p>").attr("id", i).addClass("choice").text(trivia[sequence].answers[i]);
                 $("#answers").append(choice);
@@ -80,7 +88,7 @@ $(document).ready(function() {
             var helpButton = $("<button>").attr("id", "hint-button").text("Hint");
             $("#help").append(helpButton);
 
-            $("#hint-button").on("click", function() {
+            $("#hint-button").on("click", function () {
                 $(this).prop('disabled', true);
                 var helpDiv = $("<div>").addClass("clearable").html("<br/>")
                 pHint = $("<p>").attr("id", "hint-text").text(trivia[sequence].hint);
@@ -88,7 +96,7 @@ $(document).ready(function() {
                 $(helpDiv).append(pHint);
             });
 
-            $(document.body).unbind().on("click", ".choice", function() {
+            $(document.body).unbind().on("click", ".choice", function () {
                 var userChoice = $(this).text();
                 var currentAnswer = trivia[sequence].answers[trivia[sequence].correctAnswer];
 
@@ -101,6 +109,8 @@ $(document).ready(function() {
 
                 sequence++;
                 $(".clearable").empty();
+                resetTimer();
+                runTimer();
                 writeQuestion();
             })
         }
@@ -129,10 +139,34 @@ $(document).ready(function() {
         var restartButton = $("<button>").attr("id", "restart-button").addClass("clearable").text("Play Again?");
         $("#wrongs").append(restartDiv);
         $(restartDiv).append(restartButton);
-        
-        $(document.body).on("click", "#restart-button", function() {
+
+        $(document.body).on("click", "#restart-button", function () {
             restartGame();
         })
+    }
+
+    function runTimer() {
+        clearInterval(intervalId);
+        intervalId = setInterval(qDecrement, 1000);
+    }
+
+    function resetTimer() {
+        qTimer = 20;
+        runTimer();
+    }
+
+    function stopTimer() {
+        clearInterval(intervalId);
+    }
+
+    function qDecrement() {
+        qTimer--;
+
+        $("#count-down").text("Seconds left: " + qTimer);
+
+        if (qTimer === 0) {
+            stopTimer()
+        }
     }
 
     function restartGame() {
@@ -140,14 +174,33 @@ $(document).ready(function() {
         correct = 0;
         wrong = 0;
         $(".clearable").empty();
+        resetTimer();
+        runTimer();
         writeQuestion();
     }
 
-    $("#start").on("click", function() {
+    // function randomScore(min, max) {
+    //     return Math.floor(Math.random() * (max - min + 1) + min);
+    // }
+
+    // function randomQuestion() {
+    //     // var arr = []
+    //     while(arr.length < 10){
+    //         var r = randomScore(1,10);
+    //         if(arr.indexOf(r) === -1) arr.push(r);
+    //     }
+
+    // }
+
+    $("#start").on("click", function () {
         $("#greeting").hide();
         $("#start").hide();
         console.log("sequence: " + sequence)
+        runTimer();
         writeQuestion();
     })
+
+
+    // randomQuestion();
 
 });
