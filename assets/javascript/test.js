@@ -73,8 +73,8 @@ $(document).ready(function() {
             console.log("sequence: " + sequence);
 
             for (i = 0; i < 4; i++) {
-                var c = $("<p>").attr("id", i).addClass("choice").text(trivia[sequence].answers[i]);
-                $("#answers").append(c);
+                var choice = $("<p>").attr("id", i).addClass("choice").text(trivia[sequence].answers[i]);
+                $("#answers").append(choice);
             }
 
             var helpButton = $("<button>").attr("id", "hint-button").text("Hint");
@@ -82,8 +82,10 @@ $(document).ready(function() {
 
             $("#hint-button").on("click", function() {
                 $(this).prop('disabled', true);
+                var helpDiv = $("<div>").addClass("clearable").html("<br/>")
                 pHint = $("<p>").attr("id", "hint-text").text(trivia[sequence].hint);
-                $("#help").append(pHint);
+                $("#main").append(helpDiv);
+                $(helpDiv).append(pHint);
             });
 
             $(document.body).unbind().on("click", ".choice", function() {
@@ -109,10 +111,36 @@ $(document).ready(function() {
 
     function endSlide() {
         $("#question").text("You're Done!");
+
+        if (correct === 10) {
+            $("#rights").text("You got them all right!");
+            $("#wrongs").text("You're too good")
+        }
+        else if (wrong === 10) {
+            $("#rights").text("You got none of them right? Seriously?");
+            $("#wrongs").text("Just try again and use Google this time. I won't tell.")
+        }
+        else {
+            $("#rights").text("You got " + correct + " right!");
+            $("#wrongs").text("And you got " + wrong + " wrong");
+        }
+
+        var restartDiv = $("<div>").html("<br/>");
+        var restartButton = $("<button>").attr("id", "restart-button").addClass("clearable").text("Play Again?");
+        $("#wrongs").append(restartDiv);
+        $(restartDiv).append(restartButton);
+        
+        $(document.body).on("click", "#restart-button", function() {
+            restartGame();
+        })
     }
 
-    function checkGuess() {
-        
+    function restartGame() {
+        sequence = 0;
+        correct = 0;
+        wrong = 0;
+        $(".clearable").empty();
+        writeQuestion();
     }
 
     $("#start").on("click", function() {
