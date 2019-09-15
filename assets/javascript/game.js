@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     var correctArray = ["assets/gifs/correct/c1.gif", "assets/gifs/correct/c2.gif", "assets/gifs/correct/c3.gif", "assets/gifs/correct/c4.gif", "assets/gifs/correct/c5.gif", "assets/gifs/correct/c6.gif", "assets/gifs/correct/c7.gif", "assets/gifs/correct/c8.gif", "assets/gifs/correct/c9.gif", "assets/gifs/correct/c10.gif"];
     var wrongArray = ["assets/gifs/wrong/w1.gif", "assets/gifs/wrong/w2.gif", "assets/gifs/wrong/w3.gif", "assets/gifs/wrong/w4.gif", "assets/gifs/wrong/w5.gif", "assets/gifs/wrong/w6.gif", "assets/gifs/wrong/w7.gif", "assets/gifs/wrong/w8.gif", "assets/gifs/wrong/w9.gif", "assets/gifs/wrong/w10.gif"];
-    var qTimer = 20;
+    var qTimer = 30;
     var intervalId;
-    var shortTimer = 8;
+    var shortTimer = 10;
     var shortInterval;
     var correct = 0;
     var wrong = 0;
@@ -236,8 +236,8 @@ $(document).ready(function () {
     }
     
     function resetTimer() {
-        qTimer = 20;
-        shortTimer = 8;
+        qTimer = 30;
+        shortTimer = 10;
     }
 
     function restartGame() {
