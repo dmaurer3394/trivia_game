@@ -88,11 +88,11 @@ $(document).ready(function () {
             $(timerSpaceDiv).append(timerSpan)
 
             for (i = 0; i < 4; i++) {
-                var choice = $("<p>").attr("id", i).addClass("choice").text(trivia[sequence].answers[i]);
+                var choice = $("<p>").attr("id", "number" + i).addClass("choice").text(trivia[sequence].answers[i]);
                 $("#answers").append(choice);
             }
 
-            var helpButton = $("<button>").attr("id", "hint-button").text("Hint");
+            var helpButton = $("<button>").attr("id", "hint-button").addClass("btn btn-success btn-lg").text("Hint");
             $("#help").append(helpButton);
 
             $("#hint-button").on("click", function () {
@@ -124,10 +124,14 @@ $(document).ready(function () {
     function correctSlide() {
         $(".clearable").empty();
         resetTimer();
-        $("#question").text("You're right!")
+        $("#after-answer").text("You're right!")
 
         var i = Math.floor(Math.random() * 10)
         $("#gif").html("<img src='" + correctArray[i] + "'>")
+        var beforeDiv = $("<div>").html("<br/>");
+        var afterDiv = $("<div>").html("<br/>");
+        $("#gif").prepend(beforeDiv);
+        $("#gif").append(afterDiv);
 
         $("#fact").text(trivia[sequence].fact);
 
@@ -138,10 +142,14 @@ $(document).ready(function () {
     function wrongSlide() {
         $(".clearable").empty();
         resetTimer();
-        $("#question").text("Sorry, the correct answer was " + currentAnswer);
+        $("#after-answer").text("Sorry, the correct answer was " + currentAnswer);
 
         var i = Math.floor(Math.random() * 10);
         $("#gif").html("<img src='" + wrongArray[i] + "'>");
+        var beforeDiv = $("<div>").html("<br/>");
+        var afterDiv = $("<div>").html("<br/>");
+        $("#gif").prepend(beforeDiv);
+        $("#gif").append(afterDiv);
 
         $("#fact").text(trivia[sequence].fact);
 

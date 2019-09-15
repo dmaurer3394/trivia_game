@@ -8,22 +8,20 @@
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|VT323&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div id="main" class="container text-center">
-  <header>
-    <h1>Trivia</h1>
-  </header>
+<div id="main" class="container text-center p-3">
 
+  <h1>Tech Trivia</h1>
   <br>
-
   <p id="greeting">Click the button to start!</p>
-  <button id="start">Start</button>
   <p id="timer"></p>
-
+  
   <span class="clearable" id="question"></span>
+  <span class="clearable" id="after-answer"></span>
   <br>
   <span class="clearable" id="gif"></span>
   <br>
@@ -31,6 +29,7 @@
   <br>
   <span class="clearable" id="show-timer"></span>
   <span class="clearable" id="answers"></span>
+  <button class="btn btn-success btn-block" id="start">Start</button>
   <p class="clearable" id="extra"></p>
   <p class="clearable" id="rights"></p>
   <p class="clearable" id="wrongs"></p>

@@ -1,3 +1,64 @@
-.option:hover {
-    text-size-adjust: 10%;
+body {
+    background-image: url(../images/background.jpg);
+    margin: 50px;
+}
+
+h1 {
+    font-family: 'VT323', monospace;
+    font-size: 80pt;
+    background-color: rgba(5, 204, 2, 0.705);
+    border-radius: 5%;
+}
+
+p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14pt;
+}
+
+span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14pt;
+}
+
+.container {
+    background-color: rgba(192, 192, 192, 0.842);
+}
+
+.btn {
+    font-family: 'Share Tech Mono', monospace;
+    color: black;
+    background-color: rgb(5, 204, 2, 0.705);
+}
+
+.btn:hover {
+    background-color: rgb(4, 228, 0, 0.705);
+    color: black;
+}
+
+#question {
+    font-weight: bold;
+}
+
+#greeting {
+    font-weight: bold;
+}
+
+#number0:hover {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+#number1:hover {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+#number2:hover {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+#number3:hover {
+    font-size: 16pt;
+    font-weight: bold;
 }
