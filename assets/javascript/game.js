@@ -37,7 +37,7 @@ $(document).ready(function () {
         hint: "It weighed more than a car battery, but less than a modern refrigerator.",
         fact: "The hard drive in question was the IBM 3380. It had a capacity of 1.26 gb and cost around $50,000"
     }, {
-        question: "Mozilla's Firefox browser originally released as with what name?",
+        question: "Mozilla's Firefox browser originally released with what name?",
         answers: ["Mozilla Red Panda", "Mozilla Phoenix", "Mozilla Firefly", "Mozilla Hyena"],
         correctAnswer: 1,
         hint: "FIREfox",
@@ -183,7 +183,7 @@ $(document).ready(function () {
         }
 
         var restartDiv = $("<div>").html("<br/>");
-        var restartButton = $("<button>").attr("id", "restart-button").addClass("clearable").text("Play Again?");
+        var restartButton = $("<button>").attr("id", "restart-button").addClass("clearable btn btn-lg").text("Play Again?");
         $("#wrongs").append(restartDiv);
         $(restartDiv).append(restartButton);
 
