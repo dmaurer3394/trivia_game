@@ -46,19 +46,23 @@ span {
 #number0:hover {
     font-size: 16pt;
     font-weight: bold;
+    cursor: pointer;
 }
 
 #number1:hover {
     font-size: 16pt;
     font-weight: bold;
+    cursor: pointer;
 }
 
 #number2:hover {
     font-size: 16pt;
     font-weight: bold;
+    cursor: pointer;
 }
 
 #number3:hover {
     font-size: 16pt;
     font-weight: bold;
+    cursor: pointer;
 }

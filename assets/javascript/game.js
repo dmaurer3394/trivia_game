@@ -4,7 +4,7 @@ $(document).ready(function () {
     var wrongArray = ["assets/gifs/wrong/w1.gif", "assets/gifs/wrong/w2.gif", "assets/gifs/wrong/w3.gif", "assets/gifs/wrong/w4.gif", "assets/gifs/wrong/w5.gif", "assets/gifs/wrong/w6.gif", "assets/gifs/wrong/w7.gif", "assets/gifs/wrong/w8.gif", "assets/gifs/wrong/w9.gif", "assets/gifs/wrong/w10.gif"];
     var qTimer = 30;
     var intervalId;
-    var shortTimer = 10;
+    var shortTimer = 8;
     var shortInterval;
     var correct = 0;
     var wrong = 0;
@@ -158,6 +158,9 @@ $(document).ready(function () {
     }
 
     function endSlide() {
+        stopTimer();
+        stopShortTimer();
+        resetTimer();
         missed = 10 - correct - wrong;
 
         if (correct === 10) {
@@ -165,7 +168,7 @@ $(document).ready(function () {
             $("#rights").text("You got them all right!");
             $("#wrongs").text("You're too good.")
         }
-        else if (wrong === 10) {
+        else if (correct === 0) {
             $("#gif").html("<img src=assets/gifs/all-10-wrong.gif>");
             $("#rights").text("You got none of them right? Seriously?");
             $("#wrongs").text("Just try again and use Google this time. I won't tell.")
@@ -237,7 +240,7 @@ $(document).ready(function () {
     
     function resetTimer() {
         qTimer = 30;
-        shortTimer = 10;
+        shortTimer = 8;
     }
 
     function restartGame() {
