@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    // Declaring global variables
     var correctArray = ["assets/gifs/correct/c1.gif", "assets/gifs/correct/c2.gif", "assets/gifs/correct/c3.gif", "assets/gifs/correct/c4.gif", "assets/gifs/correct/c5.gif", "assets/gifs/correct/c6.gif", "assets/gifs/correct/c7.gif", "assets/gifs/correct/c8.gif", "assets/gifs/correct/c9.gif", "assets/gifs/correct/c10.gif"];
     var wrongArray = ["assets/gifs/wrong/w1.gif", "assets/gifs/wrong/w2.gif", "assets/gifs/wrong/w3.gif", "assets/gifs/wrong/w4.gif", "assets/gifs/wrong/w5.gif", "assets/gifs/wrong/w6.gif", "assets/gifs/wrong/w7.gif", "assets/gifs/wrong/w8.gif", "assets/gifs/wrong/w9.gif", "assets/gifs/wrong/w10.gif"];
     var qTimer = 30;
@@ -12,6 +13,8 @@ $(document).ready(function () {
     var sequence = 0;
     var currentAnswer = "";
 
+    // This is the global object I used to contain all the trivia questions, answers, the correct answer as an index of the array of questions, the user
+    // clickable hint, and the fact played in the screen after the question is answered.
     var trivia = [{
         question: "What was the official name for Android 6.0?",
         answers: ["Marshmallow", "Nougat", "Macaroon", "Gingerbread"],
@@ -74,6 +77,8 @@ $(document).ready(function () {
         fact: "The photo was captured in Sonoma County, California by National Geographic photographer Charles O'Rear in 1996. It was sold as a stock photo to image licensing agency Corbis, then sold to Microsoft in 2000."
     }];
 
+    // This writes the question and timer, the hint button, and loops through to write the answers on the page
+    // It also contains the "if" condition that checks if the chosen answer is the correct one OR throws you to the end slide if all questions have been answered
     function writeQuestion() {
         if (sequence < 10) {
 
@@ -121,6 +126,7 @@ $(document).ready(function () {
         }
     }
 
+    // A callable function for the "slide" that shows upon clicking a correct answer
     function correctSlide() {
         $(".clearable").empty();
         resetTimer();
@@ -139,6 +145,7 @@ $(document).ready(function () {
         sequence++;
     }
 
+    // Function for the "slide" shown on clicking a wrong answer
     function wrongSlide() {
         $(".clearable").empty();
         resetTimer();
@@ -157,6 +164,7 @@ $(document).ready(function () {
         sequence++;
     }
 
+    // This is my "end slide" I show when all the questions have been asked. It also generates a "play again" button
     function endSlide() {
         stopTimer();
         stopShortTimer();
@@ -195,15 +203,18 @@ $(document).ready(function () {
         })
     }
 
+    // function to run the in question timer
     function runTimer() {
         clearInterval(intervalId);
         intervalId = setInterval(qDecrement, 1000);
     }
 
+    // stops in question timer
     function stopTimer() {
         clearInterval(intervalId);
     }
     
+    // counts down and updates on screen. Also throws you to the "wrong slide" if it runs out
     function qDecrement() {
         qTimer--;
         
@@ -217,15 +228,18 @@ $(document).ready(function () {
         }
     }
     
+    // starts the shorter timer used for in-between questions
     function runShortTimer () {
         clearInterval(shortInterval);
         shortInterval = setInterval(shortDecrement, 1000);
     }
 
+    // stops short timer
     function stopShortTimer() {
         clearInterval(shortInterval);
     }
 
+    // counts down short timer and throws you to the next question
     function shortDecrement() {
         shortTimer--;
 
@@ -238,11 +252,13 @@ $(document).ready(function () {
         }
     }
     
+    // resets both the in question timer and the short timer
     function resetTimer() {
         qTimer = 30;
         shortTimer = 8;
     }
 
+    // resets variables for a start over and send you back to question 1
     function restartGame() {
         sequence = 0;
         correct = 0;
@@ -253,6 +269,7 @@ $(document).ready(function () {
         writeQuestion();
     }
 
+    // on click function to initially start the game
     $("#start").on("click", function () {
         $("#greeting").hide();
         $("#start").hide();
